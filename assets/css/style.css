@@ -1,0 +1,107 @@
+/* Container for the video items */
+#pvg_video_list {
+    margin-bottom: 20px;
+}
+
+/* Individual video item */
+.pvg_video_item {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Label for video type */
+.pvg_video_item label {
+    font-weight: bold;
+    font-size: 14px;
+    color: #333;
+}
+
+/* Radio buttons for video type */
+.pvg_video_item input[type="radio"] {
+    margin-right: 8px;
+}
+
+/* Video URL input field */
+.pvg_video_item input[type="text"] {
+    width: calc(100% - 180px);
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-top: 5px;
+    margin-right: 10px;
+    display: inline-block;
+    background-color: #fff;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Upload and Remove buttons */
+.pvg_video_item .button {
+    padding: 8px 12px;
+    font-size: 13px;
+    margin-top: 5px;
+    cursor: pointer;
+    background-color: #0073aa;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    text-decoration: none;
+}
+
+.pvg_video_item .button:hover {
+    background-color: #005177;
+}
+
+.pvg_video_item .pvg_remove_video {
+    background-color: #d63638;
+}
+
+.pvg_video_item .pvg_remove_video:hover {
+    background-color: #a22425;
+}
+
+/* Button for adding more videos */
+#pvg_add_more_videos {
+    background-color: #46b450;
+    padding: 10px 15px;
+    font-size: 14px;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    border: none;
+}
+
+#pvg_add_more_videos:hover {
+    background-color: #389638;
+}
+
+/* Ensuring buttons are properly aligned */
+.pvg_video_item .button {
+    display: inline-block;
+    vertical-align: top;
+}
+
+/* Styling for the whole meta box */
+#pvg_video_meta_box {
+    background-color: #fff;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Adjustments for mobile responsiveness */
+@media (max-width: 768px) {
+    .pvg_video_item input[type="text"] {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .pvg_video_item .button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
