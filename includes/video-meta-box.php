@@ -1,5 +1,4 @@
 <?php
-// Add video URL meta box
 function pvg_add_video_meta_box() {
     add_meta_box(
         'pvg_video_meta_box',
@@ -57,10 +56,9 @@ function pvg_save_video_meta_box_data($post_id) {
 
 add_action('save_post', 'pvg_save_video_meta_box_data');
 
-// Enqueue the necessary scripts and styles
 function pvg_enqueue_admin_scripts($hook) {
     if ($hook == 'post.php' || $hook == 'post-new.php') {
-        wp_enqueue_media(); // Enqueue WordPress media uploader
+        wp_enqueue_media(); 
         wp_enqueue_script('pvg-admin-script', plugins_url('../assets/js/script.js', __FILE__), ['jquery'], '1.0', true);
         wp_enqueue_style('pvg-admin-style', plugins_url('../assets/css/style.css', __FILE__));
     }

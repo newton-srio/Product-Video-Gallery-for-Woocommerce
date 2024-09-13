@@ -1,9 +1,7 @@
-/* Container for the video items */
 #pvg_video_list {
     margin-bottom: 20px;
 }
 
-/* Individual video item */
 .pvg_video_item {
     background-color: #f9f9f9;
     border: 1px solid #ddd;
@@ -13,19 +11,18 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Label for video type */
 .pvg_video_item label {
     font-weight: bold;
     font-size: 14px;
     color: #333;
 }
 
-/* Radio buttons for video type */
+
 .pvg_video_item input[type="radio"] {
     margin-right: 8px;
 }
 
-/* Video URL input field */
+
 .pvg_video_item input[type="text"] {
     width: calc(100% - 180px);
     padding: 8px;
@@ -39,7 +36,6 @@
     box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
-/* Upload and Remove buttons */
 .pvg_video_item .button {
     padding: 8px 12px;
     font-size: 13px;
@@ -64,7 +60,7 @@
     background-color: #a22425;
 }
 
-/* Button for adding more videos */
+
 #pvg_add_more_videos {
     background-color: #46b450;
     padding: 10px 15px;
@@ -79,13 +75,13 @@
     background-color: #389638;
 }
 
-/* Ensuring buttons are properly aligned */
+
 .pvg_video_item .button {
     display: inline-block;
     vertical-align: top;
 }
 
-/* Styling for the whole meta box */
+
 #pvg_video_meta_box {
     background-color: #fff;
     padding: 15px;
@@ -93,7 +89,7 @@
     border-radius: 5px;
 }
 
-/* Adjustments for mobile responsiveness */
+
 @media (max-width: 768px) {
     .pvg_video_item input[type="text"] {
         width: 100%;
@@ -104,4 +100,51 @@
         width: 100%;
         margin-bottom: 10px;
     }
+}
+
+.slick-prev,
+.slick-next {
+    background: gray !important;
+    border: none !important;
+}
+
+.slick-prev::before,
+.slick-next::before {
+    display: none;
+}
+
+.slick-arrow-custom {
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 50%;
+    color: red;
+    width: 40px;
+    height: 40px;
+    display: inline;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    cursor: pointer;
+    opacity: 1;
+    visibility: visible;
+}
+
+.slick-prev.slick-arrow-custom {
+    left: 10px;
+}
+
+.slick-next.slick-arrow-custom {
+    right: 10px;
+}
+
+.slick-arrow-custom i {
+    font-size: 20px;
+}
+
+.slick-prev.slick-arrow-custom,
+.slick-next.slick-arrow-custom {
+    opacity: 1 !important;
+    visibility: visible !important;
 }

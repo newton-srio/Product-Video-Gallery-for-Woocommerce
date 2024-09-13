@@ -1,5 +1,17 @@
 jQuery(document).ready(function ($) {
-    // Handle adding more videos
+    if ($('.pvg-video-slider').length && typeof $.fn.slick !== 'undefined') {
+        $('.pvg-video-slider').slick({
+            dots: true,
+            arrows: true,
+            infinite: false,
+            speed: 300,
+            slidesToShow: 1,
+            adaptiveHeight: true,
+            prevArrow: '<button type="button" class="slick-prev slick-arrow-custom"><i class="fas fa-chevron-left"></i></button>',
+            nextArrow: '<button type="button" class="slick-next slick-arrow-custom"><i class="fas fa-chevron-right"></i></button>'
+        });
+    }
+
     $('#pvg_add_more_videos').click(function (e) {
         e.preventDefault();
         var index = $('#pvg_video_list .pvg_video_item').length;
@@ -18,7 +30,6 @@ jQuery(document).ready(function ($) {
         `);
     });
 
-    // Handle showing the upload button when WP Library is selected
     $('#pvg_video_list').on('change', '.pvg-video-type-radio', function () {
         var index = $(this).data('index');
         if ($(this).val() === 'wp_library') {
@@ -27,14 +38,11 @@ jQuery(document).ready(function ($) {
             $('#pvg_video_url_' + index).siblings('.pvg_upload_button').hide();
         }
     });
-
-    // Handle removing video entries
     $('#pvg_video_list').on('click', '.pvg_remove_video', function (e) {
         e.preventDefault();
         $(this).closest('.pvg_video_item').remove();
     });
 
-    // Handle opening the media uploader
     $('#pvg_video_list').on('click', '.pvg_upload_button', function (e) {
         e.preventDefault();
 
