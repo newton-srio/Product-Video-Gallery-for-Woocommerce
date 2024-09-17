@@ -23,9 +23,10 @@ jQuery(document).ready(function ($) {
                 <input type="radio" class="pvg-video-type-radio" data-index="` + index + `" name="pvg_video_type[` + index + `]" value="vimeo"> Vimeo
                 <input type="radio" class="pvg-video-type-radio" data-index="` + index + `" name="pvg_video_type[` + index + `]" value="wp_library"> WP Library
                 <br>
-                <input type="text" id="pvg_video_url_` + index + `" name="pvg_video_url[` + index + `]" placeholder="Paste video URL or upload" style="width: 80%;">
-                <button class="button pvg_upload_button" data-index="` + index + `" style="display:none;">Upload from WP Library</button>
-                <button class="button pvg_remove_video">Remove Video</button>
+                <input type="text" id="pvg_video_url_` + index + `" name="pvg_video_url[` + index + `]" placeholder="Paste video URL" style="width: 80%;">
+                <span class="pvg_remove_video_icon" style="cursor: pointer; color: red; font-size: 18px;" title="Remove Video">
+                    <i class="fas fa-trash-alt"></i>
+                </span>
             </div>
         `);
     });
@@ -33,33 +34,25 @@ jQuery(document).ready(function ($) {
     $('#pvg_video_list').on('change', '.pvg-video-type-radio', function () {
         var index = $(this).data('index');
         if ($(this).val() === 'wp_library') {
-            $('#pvg_video_url_' + index).siblings('.pvg_upload_button').show();
-        } else {
-            $('#pvg_video_url_' + index).siblings('.pvg_upload_button').hide();
+            var mediaUploader = wp.media({
+                title: 'Select or Upload Video',
+                button: {
+                    text: 'Use this video'
+                },
+                multiple: false
+            });
+
+            mediaUploader.on('select', function () {
+                var attachment = mediaUploader.state().get('selection').first().toJSON();
+                $('#pvg_video_url_' + index).val(attachment.url);
+            });
+
+            mediaUploader.open();
         }
     });
-    $('#pvg_video_list').on('click', '.pvg_remove_video', function (e) {
+
+    $('#pvg_video_list').on('click', '.pvg_remove_video_icon', function (e) {
         e.preventDefault();
         $(this).closest('.pvg_video_item').remove();
-    });
-
-    $('#pvg_video_list').on('click', '.pvg_upload_button', function (e) {
-        e.preventDefault();
-
-        var index = $(this).data('index');
-        var mediaUploader = wp.media({
-            title: 'Select or Upload Video',
-            button: {
-                text: 'Use this video'
-            },
-            multiple: false
-        });
-
-        mediaUploader.on('select', function () {
-            var attachment = mediaUploader.state().get('selection').first().toJSON();
-            $('#pvg_video_url_' + index).val(attachment.url);
-        });
-
-        mediaUploader.open();
     });
 });

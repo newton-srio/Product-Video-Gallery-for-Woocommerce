@@ -20,17 +20,19 @@ function pvg_video_meta_box_callback($post) {
     foreach ($video_urls as $index => $video_data) {
         echo '<div class="pvg_video_item">';
         echo '<label>Choose Video Type:</label><br>';
-        echo '<input type="radio" class="pvg-video-type-radio" name="pvg_video_type[' . $index . ']" value="youtube"' . checked($video_data['type'], 'youtube', false) . '> YouTube';
-        echo '<input type="radio" class="pvg-video-type-radio" name="pvg_video_type[' . $index . ']" value="vimeo"' . checked($video_data['type'], 'vimeo', false) . '> Vimeo';
-        echo '<input type="radio" class="pvg-video-type-radio" name="pvg_video_type[' . $index . ']" value="wp_library"' . checked($video_data['type'], 'wp_library', false) . '> WP Library<br>';
+        echo '<input type="radio" class="pvg-video-type-radio" name="pvg_video_type[' . $index . ']" value="youtube"' . checked($video_data['type'], 'youtube', false) . '> YouTube ';
+        echo '<input type="radio" class="pvg-video-type-radio" name="pvg_video_type[' . $index . ']" value="vimeo"' . checked($video_data['type'], 'vimeo', false) . '> Vimeo ';
+        echo '<input type="radio" class="pvg-video-type-radio" name="pvg_video_type[' . $index . ']" value="wp_library"' . checked($video_data['type'], 'wp_library', false) . '> WP Library<br> ';
         echo '<input type="text" id="pvg_video_url_' . $index . '" name="pvg_video_url[' . $index . ']" value="' . esc_attr($video_data['url']) . '" placeholder="Paste video URL or upload" style="width: 80%;">';
         echo '<button class="button pvg_upload_button" data-index="' . $index . '" style="display:none;">Upload from WP Library</button>';
-        echo '<button class="button pvg_remove_video">Remove Video</button>';
+        echo '<span class="pvg_remove_video_icon" style="cursor: pointer; color: red; font-size: 18px;" title="Remove Video">
+                    <i class="fas fa-trash-alt"></i>
+                </span>';
         echo '</div>';
     }
     
     echo '</div>';
-    echo '<button class="button" id="pvg_add_more_videos">Add More Videos</button>';
+    echo '<button class="button pvg_add_video_button" id="pvg_add_more_videos"><i class="fas fa-plus"></i> Add</button>';
 }
 
 function pvg_save_video_meta_box_data($post_id) {
@@ -61,6 +63,8 @@ function pvg_enqueue_admin_scripts($hook) {
         wp_enqueue_media(); 
         wp_enqueue_script('pvg-admin-script', plugins_url('../assets/js/script.js', __FILE__), ['jquery'], '1.0', true);
         wp_enqueue_style('pvg-admin-style', plugins_url('../assets/css/style.css', __FILE__));
+        wp_enqueue_style('pvg-fontawesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
     }
 }
 add_action('admin_enqueue_scripts', 'pvg_enqueue_admin_scripts');
+?>
