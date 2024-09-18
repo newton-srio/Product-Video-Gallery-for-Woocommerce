@@ -19,9 +19,13 @@ jQuery(document).ready(function ($) {
         $('#pvg_video_list').append(`
             <div class="pvg_video_item">
                 <label>Choose Video Type:</label><br>
-                <input type="radio" class="pvg-video-type-radio" data-index="` + index + `" name="pvg_video_type[` + index + `]" value="youtube"> YouTube
-                <input type="radio" class="pvg-video-type-radio" data-index="` + index + `" name="pvg_video_type[` + index + `]" value="vimeo"> Vimeo
-                <input type="radio" class="pvg-video-type-radio" data-index="` + index + `" name="pvg_video_type[` + index + `]" value="wp_library"> WP Library
+                <select class="pvg-video-type-dropdown" data-index="` + index + `" name="pvg_video_type[` + index + `]">
+                    <option value="youtube">YouTube</option>
+                    <option value="facebook">Facebook</option>
+                    <option value="wp_library">WP Library</option>
+                    <option value="vimeo">Vimeo</option>
+                    <option value="rumble">Rumble</option>      
+                </select>
                 <br>
                 <input type="text" id="pvg_video_url_` + index + `" name="pvg_video_url[` + index + `]" placeholder="Paste video URL" style="width: 80%;">
                 <span class="pvg_remove_video_icon" style="cursor: pointer; color: red; font-size: 18px;" title="Remove Video">
@@ -31,7 +35,7 @@ jQuery(document).ready(function ($) {
         `);
     });
 
-    $('#pvg_video_list').on('change', '.pvg-video-type-radio', function () {
+    $('#pvg_video_list').on('change', '.pvg-video-type-dropdown', function () {
         var index = $(this).data('index');
         if ($(this).val() === 'wp_library') {
             var mediaUploader = wp.media({

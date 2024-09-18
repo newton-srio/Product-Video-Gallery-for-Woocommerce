@@ -20,9 +20,15 @@ function pvg_video_meta_box_callback($post) {
     foreach ($video_urls as $index => $video_data) {
         echo '<div class="pvg_video_item">';
         echo '<label>Choose Video Type:</label><br>';
-        echo '<input type="radio" class="pvg-video-type-radio" name="pvg_video_type[' . $index . ']" value="youtube"' . checked($video_data['type'], 'youtube', false) . '> YouTube ';
-        echo '<input type="radio" class="pvg-video-type-radio" name="pvg_video_type[' . $index . ']" value="vimeo"' . checked($video_data['type'], 'vimeo', false) . '> Vimeo ';
-        echo '<input type="radio" class="pvg-video-type-radio" name="pvg_video_type[' . $index . ']" value="wp_library"' . checked($video_data['type'], 'wp_library', false) . '> WP Library<br> ';
+        
+        echo '<select class="pvg-video-type-dropdown" name="pvg_video_type[' . $index . ']">';
+        echo '<option value="youtube"' . selected($video_data['type'], 'youtube', false) . '>YouTube</option>';
+        echo '<option value="facebook"' .selected($video_data['type'], 'facebook', false) . '> Facebook</option>';
+        echo '<option value="vimeo"' . selected($video_data['type'], 'vimeo', false) . '>Vimeo</option>';
+        echo '<option value="wp_library"' . selected($video_data['type'], 'wp_library', false) . '>WP Library</option>';
+        echo '<option value="rumble"' . selected($video_data['type'], 'rumble', false) . '>Rumble</option>';
+        echo '</select><br>';
+        
         echo '<input type="text" id="pvg_video_url_' . $index . '" name="pvg_video_url[' . $index . ']" value="' . esc_attr($video_data['url']) . '" placeholder="Paste video URL or upload" style="width: 80%;">';
         echo '<button class="button pvg_upload_button" data-index="' . $index . '" style="display:none;">Upload from WP Library</button>';
         echo '<span class="pvg_remove_video_icon" style="cursor: pointer; color: red; font-size: 18px;" title="Remove Video">
@@ -48,7 +54,7 @@ function pvg_save_video_meta_box_data($post_id) {
         $videos = [];
         foreach ($_POST['pvg_video_url'] as $index => $url) {
             $videos[] = [
-                'type' => sanitize_text_field($_POST['pvg_video_type'][$index]),
+                'type' => sanitize_text_field($_POST['pvg_video_type'][$index]), 
                 'url' => esc_url_raw($url),
             ];
         }
@@ -57,6 +63,17 @@ function pvg_save_video_meta_box_data($post_id) {
 }
 
 add_action('save_post', 'pvg_save_video_meta_box_data');
+function product_page_widget_init() {
+    register_sidebar( array(
+        'name'          => 'Product Page Widget',
+        'id'            => 'product-page-widget',
+        'before_widget' => '<div class="product-widget-area">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h3 class="widget-title">',
+        'after_title'   => '</h3>',
+    ));
+}
+add_action( 'widgets_init', 'product_page_widget_init' );
 
 function pvg_enqueue_admin_scripts($hook) {
     if ($hook == 'post.php' || $hook == 'post-new.php') {
