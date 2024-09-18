@@ -94,6 +94,18 @@
     margin-right: 6px;
 }
 
+@media (max-width: 768px) {
+    .pvg_video_item input[type="text"] {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .pvg_video_item .button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
 /* -----------------display video-------------- */
 .pvg-container {
     display: flex;
@@ -108,7 +120,7 @@
 .pvg-video-slider {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 5vw;
     width: 35vw;
     height: 30vw;
     object-fit: contain !important;
@@ -120,6 +132,11 @@
     object-fit: contain !important;
 }
 
+.pvg-image-item {
+    width: 35vw !important;
+    height: 30vw !important;
+    object-fit: contain !important;
+}
 
 .pvg-video-slider iframe,
 .pvg-video-slider img,
@@ -133,38 +150,29 @@
 }
 
 
-/*------------------end------------------*/
-
 @media (max-width: 768px) {
-    .pvg_video_item input[type="text"] {
-        width: 100%;
-        margin-bottom: 10px;
-    }
 
-    .pvg_video_item .button {
+    .pvg-gallery,
+    .pvg-theme {
         width: 100%;
-        margin-bottom: 10px;
+        /* For small screens, make each section take up full width */
+        margin-bottom: 20px;
+        /* Add some space between stacked elements */
     }
 }
+
+/*------------------end------------------*/
 
 .slick-prev,
 .slick-next {
     background: gray !important;
     border: none !important;
-}
-
-.slick-prev::before,
-.slick-next::before {
-    display: none;
-}
-
-.slick-arrow-custom {
-    background-color: rgba(0, 0, 0, 0.6);
     border-radius: 50%;
-    color: red;
+    color: white !important;
     width: 40px;
     height: 40px;
-    display: inline;
+    font-size: 20px;
+
     justify-content: center;
     align-items: center;
     position: absolute;
@@ -174,22 +182,18 @@
     cursor: pointer;
     opacity: 1;
     visibility: visible;
+
 }
 
-.slick-prev.slick-arrow-custom {
-    left: 10px;
+.slick-prev::before,
+.slick-next::before {
+    display: none;
 }
 
-.slick-next.slick-arrow-custom {
-    right: 10px;
+.slick-prev {
+    left: 0.5vw;
 }
 
-.slick-arrow-custom i {
-    font-size: 20px;
-}
-
-.slick-prev.slick-arrow-custom,
-.slick-next.slick-arrow-custom {
-    opacity: 1 !important;
-    visibility: visible !important;
+.slick-next {
+    right: 0.5vw;
 }
