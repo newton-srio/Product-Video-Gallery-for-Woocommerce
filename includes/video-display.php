@@ -86,7 +86,6 @@ function pvg_display_product_videos_and_theme() {
     echo '</div>'; 
 }
 
-
 function extract_youtube_video_id($url) {
     $pattern = '/(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|embed)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/';
     preg_match($pattern, $url, $matches);
@@ -94,8 +93,14 @@ function extract_youtube_video_id($url) {
 }
 
 function extract_rumble_video_id($url) {
-    $pattern = '/rumble\.com\/(?:v\/|embed\/)([a-zA-Z0-9_-]+)/';
-    preg_match($pattern, $url, $matches);
-    return $matches[1] ?? '';
-}
+    $embed_pattern = '/rumble\.com\/embed\/([a-zA-Z0-9_-]+)/';  
+    $share_pattern = '/rumble\.com\/v([a-zA-Z0-9_-]+)-/';  
+    
+    if (preg_match($embed_pattern, $url, $matches)) {
+        return $matches[1]; 
+    } elseif (preg_match($share_pattern, $url, $matches)) {
+        return $matches[1];  
+    }
 
+    return ''; 
+}

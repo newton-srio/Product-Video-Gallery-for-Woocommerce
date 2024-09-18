@@ -6,6 +6,7 @@ jQuery(document).ready(function ($) {
             infinite: false,
             speed: 300,
             slidesToShow: 1,
+            slidesToScroll: 1,
             adaptiveHeight: true,
             prevArrow: '<button type="button" class="slick-prev slick-arrow-custom"><i class="fas fa-chevron-left"></i></button>',
             nextArrow: '<button type="button" class="slick-next slick-arrow-custom"><i class="fas fa-chevron-right"></i></button>'
